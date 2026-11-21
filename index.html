@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Mesón Charcutero | Charcutería - Embutidos - Quesos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f8f8f6;
+      --bg-dark: #111111;
+      --card-bg: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #555555;
+      --accent: #c59b27;
+      --whatsapp: #25D366;
+      --facebook: #1877F2;
+      --border: #e0e0dc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* HEADER / HERO */
+    header {
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .logo-badge {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1.2rem;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 0;
+      background: #000000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    header p.subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #d4d4d4;
+      margin-bottom: 1.5rem;
+    }
+
+    /* BARRA DE COMPARTIR */
+    .share-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn-share:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .btn-wa { background-color: var(--whatsapp); }
+    .btn-fb { background-color: var(--facebook); }
+
+    /* CONTENEDOR PRINCIPAL */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title .divider {
+      width: 60px;
+      height: 2px;
+      background-color: var(--bg-dark);
+      margin: 10px auto;
+    }
+
+    /* GRILLA DE PRODUCTOS / GALERÍA EDITABLE */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      background-color: #222;
+    }
+
+    .card-body {
+      padding: 1.3rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 0.9rem;
+      margin-top: auto;
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--bg-dark);
+    }
+
+    .btn-order {
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-order:hover {
+      background-color: #333333;
+    }
+
+    /* SECCIÓN CONTACTO / WHATSAPP MULTIPLE */
+    .contact-box {
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .contact-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .wa-numbers-list {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    /* BOTÓN CONFIGURAR (ADMIN LOCAL) */
+    .admin-trigger {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 10px 15px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      z-index: 998;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* MODAL DE EDICIÓN */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1001;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      width: 100%;
+      max-width: 600px;
+      max-height: 88vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+
+    .edit-item-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
+    /* CHATBOT CHARCUTERO */
+    .bot-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-dark);
+      color: #fff;
+      border: 2px solid var(--accent);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.35);
+    }
+
+    .bot-window {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      max-width: calc(100vw - 40px);
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      z-index: 1000;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .bot-window.active {
+      display: flex;
+    }
+
+    .bot-header {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .bot-messages {
+      height: 270px;
+      overflow-y: auto;
+      padding: 12px;
+      background: #f5f5f3;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .msg {
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 85%;
+    }
+
+    .msg.bot {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      background: var(--bg-dark);
+      color: #ffffff;
+      align-self: flex-end;
+    }
+
+    .bot-quick {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      padding: 6px 10px;
+      background: #eee;
+    }
+
+    .bot-quick button {
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      border: 1px solid #bbb;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .bot-input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .bot-input-area input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .bot-input-area button {
+      background: var(--bg-dark);
+      color: #fff;
+      border: none;
+      padding: 0 15px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO CON IDENTIDAD VISUAL DEL LOGO -->
+  <header>
+    <div class="logo-badge">
+      <img src="fotologo4.jpg" alt="El Mesón Charcutero">
+    </div>
+    <h1>El Mesón Charcutero</h1>
+    <p class="subtitle">Charcutería - Embutidos - Quesos</p>
+
+    <!-- BOTONES PARA COMPARTIR LA PÁGINA -->
+    <div class="share-bar">
+      <button class="btn-share btn-wa" onclick="compartirWhatsApp()">
+        📲 Compartir en WhatsApp
+      </button>
+      <button class="btn-share btn-fb" onclick="compartirFacebook()">
+        📘 Compartir en Facebook
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container">
+    <div class="section-title">
+      <h2>Nuestras Tablas y Selección</h2>
+      <div class="divider"></div>
+      <p style="font-size: 0.92rem; color: var(--text-muted);">Productos seleccionados, cortes artesanales y quesos maduros listos para disfrutar.</p>
+    </div>
+
+    <!-- GRILLA DE FOTOS / PRODUCTOS (EDITABLE) -->
+    <div class="gallery-grid" id="galleryContainer"></div>
+
+    <!-- SECCIÓN DE CONTACTO DIRECTO A WHATSAPP -->
+    <div class="contact-box">
+      <h3>¿Listo para armar tu pedido o evento?</h3>
+      <p style="font-size: 0.9rem; color: #ccc;">Escríbenos directamente a cualquiera de nuestros números de atención en WhatsApp:</p>
+      <div class="wa-numbers-list" id="waButtonsContainer"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 <strong>El Mesón Charcutero</strong> — Charcutería · Embutidos · Quesos</p>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE PARA CONFIGURAR FOTOS Y WHATSAPP -->
+  <button class="admin-trigger" onclick="abrirConfig()">⚙️ Editar Fotos / WhatsApp</button>
+
+  <!-- MODAL DE CONFIGURACIÓN -->
+  <div class="modal" id="configModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Personalizar Página</h3>
+        <button onclick="cerrarConfig()" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">✖</button>
+      </div>
+
+      <div class="form-group">
+        <label>Números de WhatsApp (separados por coma, con código país 569...)</label>
+        <input type="text" id="inputWaNumbers" placeholder="Ej: 56912345678, 56987654321">
+      </div>
+
+      <h4 style="margin: 1rem 0 0.5rem;">Fotos y Productos del Catálogo</h4>
+      <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Pega el enlace (URL) de cualquier imagen o cambia los títulos y precios:</p>
+      
+      <div id="editProductsList"></div>
+
+      <button onclick="agregarProducto()" style="background:#eee; border:1px dashed #888; width:100%; padding:8px; border-radius:6px; cursor:pointer; margin-bottom:1rem;">+ Agregar otra foto / producto</button>
+
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button onclick="restaurarDefecto()" style="background:#d9534f; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer;">Restaurar ejemplo</button>
+        <button onclick="guardarCambios()" style="background:#111; color:#fff; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; font-weight:600;">Guardar y Aplicar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÓN Y VENTANA DEL BOT CHARCUTERO -->
+  <div class="bot-bubble" onclick="toggleBot()" title="Asistente Charcutero">🧀</div>
+
+  <div class="bot-window" id="botWindow">
+    <div class="bot-header">
+      <span>🧑‍🍳 Maestro Charcutero (Asistente)</span>
+      <span onclick="toggleBot()" style="cursor:pointer;">✖</span>
+    </div>
+    <div class="bot-messages" id="botMessages">
+      <div class="msg bot">
+        ¡Hola! Bienvenido a <strong>El Mesón Charcutero</strong>. Pregúntame sobre cantidades por persona, maridajes con vino, conservación de quesos o embutidos.
+      </div>
+    </div>
+    <div class="bot-quick">
+      <button onclick="preguntaRapida('¿Cuánto calcular por persona?')">📏 Gramos/persona</button>
+      <button onclick="preguntaRapida('¿Qué vino marida mejor?')">🍷 Maridaje</button>
+      <button onclick="preguntaRapida('¿Cómo conservar quesos y jamones?')">❄️ Conservación</button>
+    </div>
+    <div class="bot-input-area">
+      <input type="text" id="botInput" placeholder="Escribe tu consulta..." onkeypress="if(event.key==='Enter') enviarConsultaBot()">
+      <button onclick="enviarConsultaBot()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const datosIniciales = {
+      whatsapps: ["56912345678"],
+      productos: [
+        {
+          titulo: "Tabla Clásica El Mesón (4 Personas)",
+          descripcion: "Selección de jamón serrano, salame artesanal, queso mantecoso, queso azul, aceitunas sevillanas y frutos secos.",
+          precio: "$24.990",
+          imagen: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          titulo: "Selección de Quesos Maduros",
+          descripcion: "Degustación de Brie francés, Gruyère, Gouda añejo y queso de cabra al merkén acompañados de miel y nueces.",
+          precio: "$19.500",
+          imagen: "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          titulo: "Surtido Ibérico & Embutidos",
+          descripcion: "Lomo embuchado, chorizo vela español, bondiola curada y prosciutto laminado al momento.",
+          precio: "$22.000",
+          imagen: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          titulo: "Tabla Eventos & Celebraciones (8-10 Pers.)",
+          descripcion: "Gran formato con 5 variedades de charcutería fina, 4 tipos de quesos, uvas, crackers artesanales y dips.",
+          precio: "$45.990",
+          imagen: "https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?auto=format&fit=crop&w=800&q=80"
+        }
+      ]
+    };
+
+    let appData = JSON.parse(localStorage.getItem('mesonCharcuteroData')) || datosIniciales;
+
+    function renderizarTodo() {
+      const gallery = document.getElementById('galleryContainer');
+      gallery.innerHTML = '';
+      const waPrincipal = appData.whatsapps[0] || "56912345678";
+
+      appData.productos.forEach((prod) => {
+        const msgPedido = encodeURIComponent(`Hola El Mesón Charcutero, me interesa pedir: *${prod.titulo}* (${prod.precio})`);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${prod.imagen}" alt="${prod.titulo}" onerror="this.src='https://via.placeholder.com/600x400/111111/ffffff?text=El+Meson+Charcutero'">
+          <div class="card-body">
+            <div>
+              <h3 class="card-title">${prod.titulo}</h3>
+              <p class="card-desc">${prod.descripcion}</p>
+            </div>
+            <div class="card-footer">
+              <span class="price">${prod.precio}</span>
+              <a href="https://wa.me/${waPrincipal}?text=${msgPedido}" target="_blank" class="btn-order" style="text-decoration:none;">
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+        gallery.appendChild(card);
+      });
+
+      const waContainer = document.getElementById('waButtonsContainer');
+      waContainer.innerHTML = '';
+      appData.whatsapps.forEach((num, idx) => {
+        const cleanNum = num.replace(/\D/g, '');
+        if (!cleanNum) return;
+        const btn = document.createElement('a');
+        btn.href = `https://wa.me/${cleanNum}?text=${encodeURIComponent('Hola El Mesón Charcutero, quisiera hacer una consulta.')}`;
+        btn.target = '_blank';
+        btn.className = 'btn-share btn-wa';
+        btn.innerHTML = `💬 WhatsApp ${appData.whatsapps.length > 1 ? (idx + 1) : ''}: +${cleanNum}`;
+        waContainer.appendChild(btn);
+      });
+    }
+
+    function compartirWhatsApp() {
+      const url = window.location.href;
+      const texto = encodeURIComponent(`Mira las tablas y productos de *El Mesón Charcutero* (Charcutería - Embutidos - Quesos): ${url}`);
+      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
+    }
+
+    function compartirFacebook() {
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+    }
+
+    function abrirConfig() {
+      document.getElementById('inputWaNumbers').value = appData.whatsapps.join(', ');
+      const list = document.getElementById('editProductsList');
+      list.innerHTML = '';
+      appData.productos.forEach((p, index) => {
+        list.innerHTML += crearFormularioProducto(p, index);
+      });
+      document.getElementById('configModal').classList.add('active');
+    }
+
+    function crearFormularioProducto(p, index) {
+      return `
+        <div class="edit-item-box" data-index="${index}">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <strong>Producto #${index + 1}</strong>
+            <button type="button" onclick="this.parentElement.parentElement.remove()" style="color:red; border:none; background:none; cursor:pointer;">Eliminar</button>
+          </div>
+          <div class="form-group">
+            <label>Título</label>
+            <input type="text" class="edit-titulo" value="${p.titulo}">
+          </div>
+          <div class="form-group">
+            <label>URL de la Foto</label>
+            <input type="text" class="edit-img" value="${p.imagen}">
+          </div>
+          <div class="form-group">
+            <label>Descripción</label>
+            <input type="text" class="edit-desc" value="${p.descripcion}">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Precio</label>
+            <input type="text" class="edit-precio" value="${p.precio}">
+          </div>
+        </div>
+      `;
+    }
+
+    function agregarProducto() {
+      const list = document.getElementById('editProductsList');
+      const count = list.children.length;
+      list.insertAdjacentHTML('beforeend', crearFormularioProducto({
+        titulo: "Nueva Tabla Artesanal",
+        imagen: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80",
+        descripcion: "Descripción de los quesos y embutidos incluidos.",
+        precio: "$20.000"
+      }, count));
+    }
+
+    function guardarCambios() {
+      const waRaw = document.getElementById('inputWaNumbers').value;
+      const waArray = waRaw.split(',').map(n => n.trim()).filter(n => n.length > 0);
+      
+      const nuevosProductos = [];
+      document.querySelectorAll('.edit-item-box').forEach(box => {
+        nuevosProductos.push({
+          titulo: box.querySelector('.edit-titulo').value,
+          imagen: box.querySelector('.edit-img').value,
+          descripcion: box.querySelector('.edit-desc').value,
+          precio: box.querySelector('.edit-precio').value
+        });
+      });
+
+      appData = {
+        whatsapps: waArray.length ? waArray : ["56912345678"],
+        productos: nuevosProductos
+      };
+
+      localStorage.setItem('mesonCharcuteroData', JSON.stringify(appData));
+      renderizarTodo();
+      cerrarConfig();
+    }
+
+    function restaurarDefecto() {
+      localStorage.removeItem('mesonCharcuteroData');
+      appData = JSON.parse(JSON.stringify(datosIniciales));
+      renderizarTodo();
+      cerrarConfig();
+    }
+
+    function cerrarConfig() {
+      document.getElementById('configModal').classList.remove('active');
+    }
+
+    function toggleBot() {
+      document.getElementById('botWindow').classList.toggle('active');
+    }
+
+    function preguntaRapida(texto) {
+      document.getElementById('botInput').value = texto;
+      enviarConsultaBot();
+    }
+
+    function enviarConsultaBot() {
+      const input = document.getElementById('botInput');
+      const pregunta = input.value.trim();
+      if (!pregunta) return;
+
+      const chat = document.getElementById('botMessages');
+      chat.innerHTML += `<div class="msg user">${pregunta}</div>`;
+      input.value = '';
+
+      const respuesta = generarRespuestaCharcuteria(pregunta.toLowerCase());
+      setTimeout(() => {
+        chat.innerHTML += `<div class="msg bot">${respuesta}</div>`;
+        chat.scrollTop = chat.scrollHeight;
+      }, 350);
+    }
+
+    function generarRespuestaCharcuteria(q) {
+      if (q.includes('gramo') || q.includes('persona') || q.includes('cantidad') || q.includes('calcular')) {
+        return "📏 <strong>Cálculo ideal por persona:</strong><br>• Como <em>picoteo previo</em> a una comida: calcula entre <strong>120 g y 150 g</strong> (mitad quesos, mitad embutidos).<br>• Si la tabla es el <em>plato principal</em>: calcula entre <strong>220 g y 250 g</strong> por invitado.";
+      }
+      if (q.includes('vino') || q.includes('marida') || q.includes('cerveza') || q.includes('tomar')) {
+        return "🍷 <strong>Guía de Maridaje:</strong><br>• <em>Jamón serrano y embutidos curados:</em> Carménère, Cabernet Sauvignon o espumante Brut.<br>• <em>Quesos suaves (Brie, Mantecoso):</em> Sauvignon Blanc o Chardonnay.<br>• <em>Quesos azules o muy maduros:</em> Late Harvest o Syrah.";
+      }
+      if (q.includes('conservar') || q.includes('guardar') || q.includes('refrigerador') || q.includes('temperatura')) {
+        return "❄️ <strong>Conservación y Servicio:</strong><br>Guarda los quesos envueltos en papel mantequilla o film en el cajón de verduras. Importante: <strong>sácalos del refrigerador 30 minutos antes</strong> de servir para que recuperen todo su aroma y textura.";
+      }
+      if (q.includes('queso')) {
+        return "🧀 Para una tabla equilibrada siempre recomendamos combinar <strong>3 texturas</strong>: uno blando (Brie o Camembert), uno semiduro (Mantecoso, Gouda o Edam) y uno intenso/maduro (Azul, Gruyère o Parmesano).";
+      }
+      if (q.includes('jamon') || q.includes('jamón') || q.includes('salame') || q.includes('embutido') || q.includes('prosciutto')) {
+        return "🥩 Nuestros embutidos curados (serrano, prosciutto, salame, bondiola) se cortan finos para que se fundan en el paladar. Combínalos con frutos secos, aceitunas o mermelada de higos para contrastar lo salado.";
+      }
+      if (q.includes('precio') || q.includes('pedir') || q.includes('comprar') || q.includes('envio') || q.includes('delivery')) {
+        const wa = appData.whatsapps[0] || "56912345678";
+        return `🛒 Puedes revisar los precios arriba en el catálogo o escribirnos directo al WhatsApp haciendo clic <a href="https://wa.me/${wa}" target="_blank" style="color:#1877F2; font-weight:bold;">aquí</a> para coordinar tu pedido.`;
+      }
+      return "🧑‍🍳 Buena consulta. En charcutería la clave es el equilibrio entre sabores salados, grasos, dulces (miel/frutas) y crocantes (nueces/galletas). ¿Quieres saber sobre <strong>cantidades por persona</strong>, <strong>maridajes</strong> o <strong>precios</strong>?";
+    }
+
+    renderizarTodo();
+  </script>
+</body>
+</html>
+
